@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "MASTER")
 public class Master {
 
     @Id
@@ -22,7 +21,7 @@ public class Master {
     @JoinColumn(name = "DEPARTMENT_ID", nullable = false)
     private Department department;
 
-    @OneToOne(mappedBy = "master")
+    @OneToMany(mappedBy = "master")
     private List<Order> orderList;
 
     public long getId() {

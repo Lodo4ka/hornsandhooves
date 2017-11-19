@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "DEPARTMENT")
 public class Department {
 
     @Id
@@ -19,13 +18,14 @@ public class Department {
 
     private TypeDepartment department;
 
-    @OneToMany(mappedBy = "FURNITURE")
+    // здесь неправильное именование для сущности
+    @OneToMany(mappedBy = "department")
     private List<Furniture> furnitureList;
 
-    @OneToMany(mappedBy = "ORDER")
+    @OneToMany(mappedBy = "department")
     private List<Order> orderList;
 
-    @OneToMany(mappedBy = "MASTER")
+    @OneToMany(mappedBy = "department")
     private List<Master> masterList;
 
     public Department() {

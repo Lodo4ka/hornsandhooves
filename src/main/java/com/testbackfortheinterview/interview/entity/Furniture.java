@@ -1,13 +1,11 @@
 package com.testbackfortheinterview.interview.entity;
 
-import com.testbackfortheinterview.interview.entity.enums.TypeDepartment;
 import com.testbackfortheinterview.interview.entity.enums.TypeofFurniture;
 
 import javax.persistence.*;
 
 
 @Entity
-@Table(name = "FURNITURE")
 public class Furniture {
 
     @Id

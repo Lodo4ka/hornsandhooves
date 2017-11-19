@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ORDER")
 public class Order {
 
     @Id
@@ -17,7 +16,7 @@ public class Order {
     @Column(unique = true, nullable = false)
     private String name;
 
-    TypeofFurniture typeofFurniture;
+    private TypeofFurniture typeofFurniture;
 
     @ManyToOne
     @JoinColumn(name = "DEPARTMENT_ID", nullable = false)
@@ -29,10 +28,13 @@ public class Order {
 
     private LocalDateTime workPeriod;
 
+    @ManyToOne
+    @JoinColumn(name = "MASTER_ID", nullable = false)
     private Master master;
 
     public Order() {
     }
+
 
     public Order(final String name, final TypeofFurniture typeofFurniture, final Department department, final LocalDateTime createDateTime, final boolean isComplete, final LocalDateTime workPeriod, final Master master) {
         this.name = name;
@@ -119,8 +121,7 @@ public class Order {
         if (isComplete() != order.isComplete()) return false;
         if (getName() != null ? !getName().equals(order.getName()) : order.getName() != null) return false;
         if (getTypeofFurniture() != order.getTypeofFurniture()) return false;
-        if (getDepartment() != null ? !getDepartment().equals(order.getDepartment()) : order.getDepartment() != null)
-            return false;
+        if (getDepartment() != null ? !getDepartment().equals(order.getDepartment()) : order.getDepartment() != null) return false;
         if (getCreateDateTime() != null ? !getCreateDateTime().equals(order.getCreateDateTime()) : order.getCreateDateTime() != null)
             return false;
         if (getWorkPeriod() != null ? !getWorkPeriod().equals(order.getWorkPeriod()) : order.getWorkPeriod() != null)
