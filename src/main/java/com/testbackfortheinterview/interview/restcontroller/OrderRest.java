@@ -14,7 +14,6 @@ import javax.persistence.RollbackException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 public class OrderRest {
 
     @Autowired
