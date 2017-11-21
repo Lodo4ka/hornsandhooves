@@ -36,6 +36,9 @@ public class Order {
     public Order() {
     }
 
+    public Order(final String name) {
+        this.name = name;
+    }
 
     public Order(final String name, final TypeofFurniture typeofFurniture, final Department department, final LocalDateTime createDateTime, final boolean isComplete, final LocalDateTime workPeriod, final Master master) {
         this.name = name;
@@ -45,6 +48,11 @@ public class Order {
         this.isComplete = isComplete;
         this.workPeriod = workPeriod;
         this.master = master;
+    }
+
+    public Order(final long id, final String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public long getId() {
