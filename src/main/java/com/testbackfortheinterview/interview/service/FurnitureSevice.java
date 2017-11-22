@@ -9,6 +9,8 @@ import com.testbackfortheinterview.interview.repository.FurnitureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FurnitureSevice {
 
@@ -40,5 +42,10 @@ public class FurnitureSevice {
         }
 
         return foundFurniture;
+    }
+
+    public List<Furniture> getAll(){
+        List<Furniture> all = furnitureRepository.getAllBy();
+        return all;
     }
 }

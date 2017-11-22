@@ -14,9 +14,9 @@
    would be @{/edit.html}
    -->
 
-<!--/*@thymesVar id="order" type="com.testbackfortheinterview.interview.entity.Order"*/-->
+<!--/*@thymesVar id="furniture" type="com.testbackfortheinterview.interview.entity.Furniture"*/-->
 <form th:action="@{/addOrder.html}"
-      th:object="${order}" method="POST">
+      th:object="${furniture}" method="POST">
     Id:
     <input type="text" th:field="*{id}" />
     <br/>
