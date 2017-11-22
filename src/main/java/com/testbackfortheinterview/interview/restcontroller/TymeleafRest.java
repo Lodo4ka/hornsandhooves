@@ -38,26 +38,26 @@ public class TymeleafRest {
         return "index";
     }
 
-    @RequestMapping(value = {"/templates/orderList.html"}, method = RequestMethod.GET)
-    public String personList(Model model) {
+    @RequestMapping(value = {"/orderList"}, method = RequestMethod.GET)
+    public String orderList(Model model) {
 
         model.addAttribute("orders", orders);
 
-        return "personList";
+        return "orderList";
     }
 
-    @RequestMapping(value = {"/templates/addOrder.html"}, method = RequestMethod.GET)
-    public String showAddPersonPage(Model model) {
+    @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)
+    public String addOrder(Model model) {
 
         Order order = new Order();
-        model.addAttribute("personForm", order);
+        model.addAttribute("order", order);
 
         return "addOrder";
     }
 
     @RequestMapping(value = { "/addOrder" }, method = RequestMethod.POST)
-    public String savePerson(Model model,
-                             @ModelAttribute("personForm") Order order) {
+    public String saveOrder(Model model,
+                             @ModelAttribute("order") Order order) {
 
         long id = order.getId();
         String name = order.getName();
@@ -67,7 +67,7 @@ public class TymeleafRest {
             Order newOrder = new Order(id, name);
             orders.add(newOrder);
 
-            return "redirect:/orderList";
+           return  "redirect:/orderList";
         }
 
         model.addAttribute("errorMessage", errorMessage);

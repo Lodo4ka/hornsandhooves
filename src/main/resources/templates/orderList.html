@@ -18,9 +18,9 @@
         <!--/*@thymesVar id="orders" type="com.testbackfortheinterview.interview.restcontroller.TymeleafRest"*/-->
         <tr th:each ="order : ${orders}">
             <!--/*@thymesVar id="id" type="com.testbackfortheinterview.interview.entity.Order"*/-->
-            <td th:utext="${id}">...</td>
+            <td th:utext="${order.id}">...</td>
             <!--/*@thymesVar id="name" type="com.testbackfortheinterview.interview.entity.Order"*/-->
-            <td th:utext="${name}">...</td>
+            <td th:utext="${order.name}">...</td>
         </tr>
     </table>
 </div>
