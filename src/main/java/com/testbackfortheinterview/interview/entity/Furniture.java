@@ -11,7 +11,7 @@ public class Furniture {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -35,7 +35,7 @@ public class Furniture {
         return id;
     }
 
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 

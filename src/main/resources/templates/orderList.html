@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1>Person List</h1>
-<a href="addOrder.html">Add Person</a>
+<h1>Order List</h1>
+<a th:href="@{addOrder.html}">Add Order</a>
 <br/><br/>
 <div>
     <table border="1">
@@ -15,12 +15,13 @@
             <th>Id</th>
             <th>Name</th>
         </tr>
-        <!--/*@thymesVar id="orders" type="com.testbackfortheinterview.interview.restcontroller.TymeleafRest"*/-->
+        <!--/*@thymesVar id="orders" type="com.testbackfortheinterview.interview.restcontroller.FurnitureRest"*/-->
         <tr th:each ="order : ${orders}">
-            <!--/*@thymesVar id="id" type="com.testbackfortheinterview.interview.entity.Order"*/-->
-            <td th:utext="${order.id}">...</td>
-            <!--/*@thymesVar id="name" type="com.testbackfortheinterview.interview.entity.Order"*/-->
-            <td th:utext="${order.name}">...</td>
+
+            <!--/*@thymesVar id="furniture" type="com.testbackfortheinterview.interview.entity.Furniture"*/-->
+            <td th:utext="${furniture.id}">...</td>
+            <!--/*@thymesVar id="furniture" type="com.testbackfortheinterview.interview.entity.Furniture"*/-->
+            <td th:utext="${furniture.name}">...</td>
         </tr>
     </table>
 </div>

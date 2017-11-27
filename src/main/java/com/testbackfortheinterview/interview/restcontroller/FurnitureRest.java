@@ -5,14 +5,10 @@ import com.testbackfortheinterview.interview.entity.Furniture;
 import com.testbackfortheinterview.interview.service.FurnitureSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -25,25 +21,43 @@ public class FurnitureRest {
     @Value("${welcome.message}")
     private String message;
 
+    @Value("${error.message}")
+    private String errorMessage;
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("message", message);
 
         return "index";
     }
 
-    @RequestMapping(path = "/order/furniture/{name}", method = RequestMethod.POST)
-    public ResponseEntity addOrder(@PathVariable String name){
-        Furniture result = furnitureSevice.create(name);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
+    public ModelAndView saveOrder(@ModelAttribute String name) {
+
+        ModelAndView modelAndView = new ModelAndView("order");
+        if (name.length() > 0
+                && name != null) {
+            Furniture newFurniture = furnitureSevice.create(name);
+            String message = "Furniture was successfully added";
+            modelAndView.addObject("message", message);
+            return modelAndView;
+        }
+        modelAndView.addObject("errorMessage", errorMessage);
+        return null;
     }
 
-    @RequestMapping(value = {"/orderList"}, method = RequestMethod.GET)
-    public String orderList(Model model){
+    @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)
+    public ModelAndView addOrder(){
+        ModelAndView modelAndView = new ModelAndView("add-order");
+        modelAndView.addObject("order", new Furniture());
+        return modelAndView;
+    }
 
+    @RequestMapping(value = {"orderList"}, method = RequestMethod.GET)
+    public String orderList(Model model) {
         List<Furniture> orders = furnitureSevice.getAll();
         model.addAttribute("orders", orders);
-        return "orders";
+        return "orderList";
     }
 
 
