@@ -1,6 +1,8 @@
 package com.testbackfortheinterview.interview.entity;
 
 import com.testbackfortheinterview.interview.entity.enums.TypeofFurniture;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -64,27 +66,35 @@ public class Furniture implements Serializable{
         this.typeofFurniture = typeofFurniture;
     }
 
+
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Furniture)) return false;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Furniture furniture = (Furniture) o;
 
-        if (getId() != furniture.getId()) return false;
-        if (getName() != null ? !getName().equals(furniture.getName()) : furniture.getName() != null) return false;
-        if (getDepartment() != null ? !getDepartment().equals(furniture.getDepartment()) : furniture.getDepartment() != null)
-            return false;
-        return getTypeofFurniture() == furniture.getTypeofFurniture();
+        return new EqualsBuilder()
+                .append(id, furniture.id)
+                .append(name, furniture.name)
+                .append(department, furniture.department)
+                .append(typeofFurniture, furniture.typeofFurniture)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getDepartment() != null ? getDepartment().hashCode() : 0);
-        result = 31 * result + (getTypeofFurniture() != null ? getTypeofFurniture().hashCode() : 0);
-        return result;
+        return new HashCodeBuilder()
+                .append(id)
+                .append(name)
+                .append(department)
+                .append(typeofFurniture)
+                .toHashCode();
     }
 
     @Override

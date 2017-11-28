@@ -32,9 +32,10 @@ public class FurnitureRest {
     }
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
-    public ModelAndView saveOrder(@ModelAttribute String name) {
+    public ModelAndView saveOrder(@ModelAttribute Furniture furniture) {
 
-        ModelAndView modelAndView = new ModelAndView("order");
+        String name = furniture.getName();
+        ModelAndView modelAndView = new ModelAndView("addOrder");
         if (name.length() > 0
                 && name != null) {
             Furniture newFurniture = furnitureSevice.create(name);
@@ -49,7 +50,10 @@ public class FurnitureRest {
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)
     public ModelAndView addOrder(){
         ModelAndView modelAndView = new ModelAndView("addOrder");
-        modelAndView.addObject("order", new Furniture());
+        Furniture furniture = new Furniture();
+        furniture.setId(0L);
+        furniture.setName("");
+        modelAndView.addObject("furniture", furniture);
         return modelAndView;
     }
 

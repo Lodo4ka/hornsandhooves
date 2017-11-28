@@ -19,10 +19,10 @@
 <!--/*@thymesVar id="furniture" type="com.testbackfortheinterview.interview.entity.Furniture"*/-->
 <form th:action="@{/addOrder.html}" th:object="${furniture}" method="post">
     Id:
-    <input type="text"/>
+    <input type="text" th:field="*{id}"/>
     <br/>
     Name:
-    <input type="text" th:value="*{name}"/>
+    <input type="text" th:field="*{name}"/>
     <br/>
     <input type="submit" value="Create" />
 </form>
