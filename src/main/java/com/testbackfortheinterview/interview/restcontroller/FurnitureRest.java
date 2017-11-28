@@ -48,7 +48,7 @@ public class FurnitureRest {
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)
     public ModelAndView addOrder(){
-        ModelAndView modelAndView = new ModelAndView("add-order");
+        ModelAndView modelAndView = new ModelAndView("addOrder");
         modelAndView.addObject("order", new Furniture());
         return modelAndView;
     }

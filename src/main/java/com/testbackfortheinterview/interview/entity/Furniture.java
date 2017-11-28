@@ -3,10 +3,11 @@ package com.testbackfortheinterview.interview.entity;
 import com.testbackfortheinterview.interview.entity.enums.TypeofFurniture;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-public class Furniture {
+public class Furniture implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
