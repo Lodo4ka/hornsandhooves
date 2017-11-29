@@ -2,7 +2,7 @@ package com.testbackfortheinterview.interview.restcontroller;
 
 
 import com.testbackfortheinterview.interview.entity.Furniture;
-import com.testbackfortheinterview.interview.service.FurnitureSevice;
+import com.testbackfortheinterview.interview.service.FurnitureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.List;
 public class FurnitureRest {
 
     @Autowired
-    private FurnitureSevice furnitureSevice;
+    private FurnitureService furnitureService;
 
     @Value("${welcome.message}")
     private String message;
@@ -34,11 +34,9 @@ public class FurnitureRest {
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
     public ModelAndView saveOrder(@ModelAttribute Furniture furniture) {
 
-        String name = furniture.getName();
         ModelAndView modelAndView = new ModelAndView("addOrder");
-        if (name.length() > 0
-                && name != null) {
-            Furniture newFurniture = furnitureSevice.create(name);
+        if (furniture != null) {
+            Furniture newFurniture = furnitureService.create(furniture);
             String message = "Furniture was successfully added";
             modelAndView.addObject("message", message);
             return modelAndView;
@@ -59,7 +57,7 @@ public class FurnitureRest {
 
     @RequestMapping(value = {"orderList"}, method = RequestMethod.GET)
     public String orderList(Model model) {
-        List<Furniture> orders = furnitureSevice.getAll();
+        List<Furniture> orders = furnitureService.getAll();
         model.addAttribute("orders", orders);
         return "orderList";
     }

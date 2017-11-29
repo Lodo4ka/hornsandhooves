@@ -31,17 +31,14 @@ public class Department {
     public Department() {
     }
 
+
     public Department(final TypeDepartment department) {
         this.department = department;
     }
 
-    public Department(final long id, final String name, final TypeDepartment department, final List<Furniture> furnitureList, final List<Order> orderList, final List<Master> masterListp) {
-        this.id = id;
+    public Department(String name, TypeDepartment department) {
         this.name = name;
         this.department = department;
-        this.furnitureList = furnitureList;
-        this.orderList = orderList;
-        this.masterList = masterListp;
     }
 
     public long getId() {

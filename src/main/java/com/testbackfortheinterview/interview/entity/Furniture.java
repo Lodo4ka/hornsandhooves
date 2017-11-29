@@ -1,5 +1,6 @@
 package com.testbackfortheinterview.interview.entity;
 
+import com.testbackfortheinterview.interview.entity.enums.TypeDepartment;
 import com.testbackfortheinterview.interview.entity.enums.TypeofFurniture;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -28,10 +29,8 @@ public class Furniture implements Serializable{
     public Furniture() {
     }
 
-    public Furniture(final String name, final Department department, final TypeofFurniture typeofFurniture) {
+    public Furniture(final String name) {
         this.name = name;
-        this.department = department;
-        this.typeofFurniture = typeofFurniture;
     }
 
     public long getId() {

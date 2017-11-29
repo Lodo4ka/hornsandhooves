@@ -10,4 +10,7 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
     Furniture findByName(String name);
 
     List<Furniture> getAllBy();
+
+    
+
 }

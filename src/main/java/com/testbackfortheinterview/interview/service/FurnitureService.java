@@ -12,36 +12,36 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FurnitureSevice {
+public class FurnitureService {
 
     @Autowired
     private FurnitureRepository furnitureRepository;
 
-    public Furniture create(String name){
+    public Furniture create(Furniture furniture){
 
-
-        Furniture foundFurniture = furnitureRepository.findByName(name);
-
-        if(foundFurniture == null){
+        if(furniture == null){
             return null;
         }
 
+
+        String name = furniture.getName();
+
         if(name.equalsIgnoreCase("кровать") || name.equalsIgnoreCase("диван") || name.equalsIgnoreCase("кресло")){
-            foundFurniture.setTypeofFurniture(TypeofFurniture.SOFTFURNITURE);
-            foundFurniture.setDepartment(new Department(TypeDepartment.SOFT));
+            furniture.setTypeofFurniture(TypeofFurniture.SOFTFURNITURE);
+            furniture.setDepartment(new Department("Unitex" , TypeDepartment.SOFT));
         }
 
         if(name.equalsIgnoreCase("шкаф") || name.equalsIgnoreCase("тумба") || name.equalsIgnoreCase("полка")){
-            foundFurniture.setTypeofFurniture(TypeofFurniture.SYSTEMFURNITURE);
-            foundFurniture.setDepartment(new Department(TypeDepartment.SYSTEM));
+            furniture.setTypeofFurniture(TypeofFurniture.SYSTEMFURNITURE);
+            furniture.setDepartment(new Department("8March" , TypeDepartment.SYSTEM));
         }
 
         if(name.equalsIgnoreCase("стол") || name.equalsIgnoreCase("стул") || name.equalsIgnoreCase("кресло-качалка")){
-            foundFurniture.setTypeofFurniture(TypeofFurniture.OFFICEFURNITURE);
-            foundFurniture.setDepartment(new Department(TypeDepartment.OFFICE));
+            furniture.setTypeofFurniture(TypeofFurniture.OFFICEFURNITURE);
+            furniture.setDepartment(new Department("IKEA" , TypeDepartment.OFFICE));
         }
-
-        return foundFurniture;
+        Furniture savaFurniture = furnitureRepository.save(furniture);
+        return savaFurniture;
     }
 
     public List<Furniture> getAll(){
