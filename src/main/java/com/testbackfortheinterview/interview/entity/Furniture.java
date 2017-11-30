@@ -1,11 +1,11 @@
 package com.testbackfortheinterview.interview.entity;
 
-import com.testbackfortheinterview.interview.entity.enums.TypeDepartment;
 import com.testbackfortheinterview.interview.entity.enums.TypeofFurniture;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -20,6 +20,7 @@ public class Furniture implements Serializable{
     @Column(unique = true, nullable = false)
     private String name;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "DEPARTMENT_ID", nullable = false)
     private Department department;
@@ -31,6 +32,7 @@ public class Furniture implements Serializable{
 
     public Furniture(final String name) {
         this.name = name;
+
     }
 
     public long getId() {
@@ -53,7 +55,7 @@ public class Furniture implements Serializable{
         return department;
     }
 
-    public void setDepartment(final Department department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 

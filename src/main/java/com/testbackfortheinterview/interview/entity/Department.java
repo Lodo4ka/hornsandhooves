@@ -3,6 +3,7 @@ package com.testbackfortheinterview.interview.entity;
 import com.testbackfortheinterview.interview.entity.enums.TypeDepartment;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,13 +21,13 @@ public class Department {
 
     // здесь неправильное именование для сущности
     @OneToMany(mappedBy = "department")
-    private List<Furniture> furnitureList;
+    private List<Furniture> furnitureList = new ArrayList<>();
 
     @OneToMany(mappedBy = "department")
-    private List<Order> orderList;
+    private List<Order> orderList= new ArrayList<>();
 
     @OneToMany(mappedBy = "department")
-    private List<Master> masterList;
+    private List<Master> masterList= new ArrayList<>();
 
     public Department() {
     }

@@ -23,12 +23,12 @@ public class FurnitureService {
             return null;
         }
 
-
         String name = furniture.getName();
 
         if(name.equalsIgnoreCase("кровать") || name.equalsIgnoreCase("диван") || name.equalsIgnoreCase("кресло")){
             furniture.setTypeofFurniture(TypeofFurniture.SOFTFURNITURE);
-            furniture.setDepartment(new Department("Unitex" , TypeDepartment.SOFT));
+             Department department = new Department("Unitex" , TypeDepartment.SOFT);
+            furniture.setDepartment(department);
         }
 
         if(name.equalsIgnoreCase("шкаф") || name.equalsIgnoreCase("тумба") || name.equalsIgnoreCase("полка")){
