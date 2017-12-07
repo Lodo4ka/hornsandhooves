@@ -3,11 +3,12 @@ package com.testbackfortheinterview.interview.entity;
 import com.testbackfortheinterview.interview.entity.enums.TypeDepartment;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
 @Entity
-public class Department {
+@Table(name = "DEPARTMENT")
+public class Department implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,36 +18,26 @@ public class Department {
     @Column(unique = true, nullable = false)
     private String name;
 
-    private TypeDepartment department;
+    private TypeDepartment typeDepartment;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private List<Furniture> furnitures = new LinkedList<>();
 
     // здесь неправильное именование для сущности
-    @OneToMany(mappedBy = "department")
-    private List<Furniture> furnitureList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "department")
-    private List<Order> orderList= new ArrayList<>();
-
-    @OneToMany(mappedBy = "department")
-    private List<Master> masterList= new ArrayList<>();
 
     public Department() {
     }
 
-
-    public Department(final TypeDepartment department) {
-        this.department = department;
-    }
-
-    public Department(String name, TypeDepartment department) {
+    public Department(String name, TypeDepartment typeDepartment) {
         this.name = name;
-        this.department = department;
+        this.typeDepartment = typeDepartment;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(final long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -54,69 +45,42 @@ public class Department {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public TypeDepartment getDepartment() {
-        return department;
+    public TypeDepartment getTypeDepartment() {
+        return typeDepartment;
     }
 
-    public void setDepartment(TypeDepartment department) {
-        this.department = department;
+    public void setTypeDepartment(TypeDepartment typeDepartment) {
+        this.typeDepartment = typeDepartment;
     }
 
-    public List<Furniture> getFurnitureList() {
-        return furnitureList;
+
+    public List<Furniture> getFurnitures() {
+        return furnitures;
     }
 
-    public void setFurnitureList(final List<Furniture> furnitureList) {
-        this.furnitureList = furnitureList;
-    }
-
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(final List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
-    public List<Master> getMasterList() {
-        return masterList;
-    }
-
-    public void setMasterList(final List<Master> masterList) {
-        this.masterList = masterList;
+    public void setFurnitures(List<Furniture> furnitures) {
+        this.furnitures = furnitures;
     }
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Department)) return false;
-
+        if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-
-        if (getId() != that.getId()) return false;
-        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
-        if (getDepartment() != that.getDepartment()) return false;
-        if (getFurnitureList() != null ? !getFurnitureList().equals(that.getFurnitureList()) : that.getFurnitureList() != null)
-            return false;
-        if (getOrderList() != null ? !getOrderList().equals(that.getOrderList()) : that.getOrderList() != null)
-            return false;
-        return getMasterList() != null ? getMasterList().equals(that.getMasterList()) : that.getMasterList() == null;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                typeDepartment == that.typeDepartment &&
+                Objects.equals(furnitures, that.furnitures);
     }
-
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getDepartment() != null ? getDepartment().hashCode() : 0);
-        result = 31 * result + (getFurnitureList() != null ? getFurnitureList().hashCode() : 0);
-        result = 31 * result + (getOrderList() != null ? getOrderList().hashCode() : 0);
-        result = 31 * result + (getMasterList() != null ? getMasterList().hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, name, typeDepartment, furnitures);
     }
 
     @Override
@@ -124,10 +88,8 @@ public class Department {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", department=" + department +
-                ", furnitureList=" + furnitureList +
-                ", orderList=" + orderList +
-                ", masterList=" + masterList +
+                ", typeDepartment=" + typeDepartment +
+                ", furnitures=" + furnitures +
                 '}';
     }
 }

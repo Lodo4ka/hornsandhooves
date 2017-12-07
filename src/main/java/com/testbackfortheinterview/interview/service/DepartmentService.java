@@ -14,9 +14,5 @@ public class DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    public List<Order> getAllOrderByDepartment(final Long id){
-        Department foundDepartment = departmentRepository.findOne(id);
-        return foundDepartment.getOrderList();
-    }
 
 }

@@ -15,13 +15,13 @@
             <th>Id</th>
             <th>Name</th>
         </tr>
-        <!--/*@thymesVar id="orders" type="com.testbackfortheinterview.interview.restcontroller.FurnitureRest"*/-->
+
+
         <tr th:each ="order : ${orders}">
 
-            <!--/*@thymesVar id="furniture" type="com.testbackfortheinterview.interview.entity.Furniture"*/-->
-            <td th:utext="${furniture.id}">...</td>
-            <!--/*@thymesVar id="furniture" type="com.testbackfortheinterview.interview.entity.Furniture"*/-->
-            <td th:utext="${furniture.name}">...</td>
+            <td th:utext="${order.id}">...</td>
+
+            <td th:utext="${order.name}">...</td>
         </tr>
     </table>
 </div>

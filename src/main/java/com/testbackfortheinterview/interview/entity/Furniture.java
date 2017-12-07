@@ -10,7 +10,9 @@ import java.io.Serializable;
 
 
 @Entity
+@Table(name = "FURNITURE")
 public class Furniture implements Serializable{
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +23,8 @@ public class Furniture implements Serializable{
     private String name;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "DEPARTMENT_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+    @JoinColumn(name = "DEPARTMENT_ID")
     private Department department;
 
     private TypeofFurniture typeofFurniture;
@@ -35,7 +37,9 @@ public class Furniture implements Serializable{
 
     }
 
-    public long getId() {
+
+
+    public Long getId() {
         return id;
     }
 

@@ -42,7 +42,7 @@ public class FurnitureRest {
             return modelAndView;
         }
         modelAndView.addObject("errorMessage", errorMessage);
-        return null;
+        return modelAndView;
     }
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)

@@ -18,9 +18,4 @@ public class DerartmentRest {
     @Autowired
     private DepartmentService departmentService;
 
-    @RequestMapping(path = "/orderAllDeraprtment/{id}", method = RequestMethod.GET)
-    public ResponseEntity getAllOrderByDepartment(@PathVariable Long id){
-        List<Order> result = departmentService.getAllOrderByDepartment(id);
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
 }

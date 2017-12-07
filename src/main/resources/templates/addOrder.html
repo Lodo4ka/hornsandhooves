@@ -15,12 +15,7 @@
    -->
 
 
-
-<!--/*@thymesVar id="furniture" type="com.testbackfortheinterview.interview.entity.Furniture"*/-->
 <form th:action="@{/addOrder.html}" th:object="${furniture}" method="post">
-    Id:
-    <input type="text" th:field="*{id}"/>
-    <br/>
     Name:
     <input type="text" th:field="*{name}"/>
     <br/>
@@ -31,9 +26,6 @@
 
 <!-- Check if errorMessage is not null and not empty -->
 
-
->
-<!--/*@thymesVar id="errorMessage" type="com.testbackfortheinterview.interview.restcontroller.FurnitureRest"*/-->
 <div th:if="${errorMessage}" th:utext="${errorMessage}"
      style="color:red;font-style:italic;">
     ...
