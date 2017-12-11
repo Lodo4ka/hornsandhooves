@@ -23,6 +23,7 @@ public class Department implements Serializable{
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Furniture> furnitures = new LinkedList<>();
 
+
     // здесь неправильное именование для сущности
 
     public Department() {

@@ -26,7 +26,7 @@ public class FurnitureService {
         String name = furniture.getName();
 
         if(name.equalsIgnoreCase("кровать") || name.equalsIgnoreCase("диван") || name.equalsIgnoreCase("кресло")){
-            furniture.setTypeofFurniture(TypeofFurniture.SOFTFURNITURE);
+            furniture.setPrice(30D);
              Department department = new Department("Unitex" , TypeDepartment.SOFT);
             furniture.setDepartment(department);
             Furniture savaFurniture = furnitureRepository.save(furniture);
@@ -34,14 +34,14 @@ public class FurnitureService {
         }
 
         if(name.equalsIgnoreCase("шкаф") || name.equalsIgnoreCase("тумба") || name.equalsIgnoreCase("полка")){
-            furniture.setTypeofFurniture(TypeofFurniture.SYSTEMFURNITURE);
+            furniture.setPrice(40D);
             furniture.setDepartment(new Department("8March" , TypeDepartment.SYSTEM));
             Furniture savaFurniture = furnitureRepository.save(furniture);
             return savaFurniture;
         }
 
         if(name.equalsIgnoreCase("стол") || name.equalsIgnoreCase("стул") || name.equalsIgnoreCase("кресло-качалка")){
-            furniture.setTypeofFurniture(TypeofFurniture.OFFICEFURNITURE);
+            furniture.setPrice(50D);
             furniture.setDepartment(new Department("IKEA" , TypeDepartment.OFFICE));
             Furniture savaFurniture = furnitureRepository.save(furniture);
             return savaFurniture;

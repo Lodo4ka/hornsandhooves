@@ -26,7 +26,7 @@ public class Furniture implements Serializable{
     @JoinColumn(name = "DEPARTMENT_ID")
     private Department department;
 
-    private TypeofFurniture typeofFurniture;
+    private Double price;
 
     public Furniture() {
     }
@@ -40,7 +40,7 @@ public class Furniture implements Serializable{
         return id;
     }
 
-    public void setId(final Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -48,7 +48,7 @@ public class Furniture implements Serializable{
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -60,14 +60,17 @@ public class Furniture implements Serializable{
         this.department = department;
     }
 
-    public TypeofFurniture getTypeofFurniture() {
-        return typeofFurniture;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setTypeofFurniture(final TypeofFurniture typeofFurniture) {
-        this.typeofFurniture = typeofFurniture;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
+    public Furniture(Double price) {
+        this.price = price;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -85,7 +88,7 @@ public class Furniture implements Serializable{
                 .append(id, furniture.id)
                 .append(name, furniture.name)
                 .append(department, furniture.department)
-                .append(typeofFurniture, furniture.typeofFurniture)
+                .append(price, furniture.price)
                 .isEquals();
     }
 
@@ -95,7 +98,7 @@ public class Furniture implements Serializable{
                 .append(id)
                 .append(name)
                 .append(department)
-                .append(typeofFurniture)
+                .append(price)
                 .toHashCode();
     }
 
@@ -105,7 +108,7 @@ public class Furniture implements Serializable{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", department=" + department +
-                ", typeofFurniture=" + typeofFurniture +
+                ", price=" + price +
                 '}';
     }
 }
