@@ -29,19 +29,26 @@ public class FurnitureService {
             furniture.setTypeofFurniture(TypeofFurniture.SOFTFURNITURE);
              Department department = new Department("Unitex" , TypeDepartment.SOFT);
             furniture.setDepartment(department);
+            Furniture savaFurniture = furnitureRepository.save(furniture);
+            return savaFurniture;
         }
 
         if(name.equalsIgnoreCase("шкаф") || name.equalsIgnoreCase("тумба") || name.equalsIgnoreCase("полка")){
             furniture.setTypeofFurniture(TypeofFurniture.SYSTEMFURNITURE);
             furniture.setDepartment(new Department("8March" , TypeDepartment.SYSTEM));
+            Furniture savaFurniture = furnitureRepository.save(furniture);
+            return savaFurniture;
         }
 
         if(name.equalsIgnoreCase("стол") || name.equalsIgnoreCase("стул") || name.equalsIgnoreCase("кресло-качалка")){
             furniture.setTypeofFurniture(TypeofFurniture.OFFICEFURNITURE);
             furniture.setDepartment(new Department("IKEA" , TypeDepartment.OFFICE));
+            Furniture savaFurniture = furnitureRepository.save(furniture);
+            return savaFurniture;
         }
-        Furniture savaFurniture = furnitureRepository.save(furniture);
-        return savaFurniture;
+        else {
+            throw new NullPointerException("nothing saved");
+        }
     }
 
     public List<Furniture> getAll(){

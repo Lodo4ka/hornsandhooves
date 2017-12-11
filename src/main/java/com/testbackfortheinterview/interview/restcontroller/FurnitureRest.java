@@ -32,17 +32,17 @@ public class FurnitureRest {
     }
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST)
-    public ModelAndView saveOrder(@ModelAttribute Furniture furniture) {
+    public String saveOrder(@ModelAttribute Furniture furniture) {
 
         ModelAndView modelAndView = new ModelAndView("addOrder");
         if (furniture != null) {
             Furniture newFurniture = furnitureService.create(furniture);
             String message = "Furniture was successfully added";
             modelAndView.addObject("message", message);
-            return modelAndView;
+            return "redirect:/orderList";
         }
         modelAndView.addObject("errorMessage", errorMessage);
-        return modelAndView;
+        throw new NullPointerException("Invalid");
     }
 
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.GET)

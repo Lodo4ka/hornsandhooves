@@ -19,7 +19,6 @@ public class Furniture implements Serializable{
     @Column(name = "ID")
     private Long id;
 
-    @Column(unique = true, nullable = false)
     private String name;
 
     @NotNull
@@ -36,8 +35,6 @@ public class Furniture implements Serializable{
         this.name = name;
 
     }
-
-
 
     public Long getId() {
         return id;

@@ -15,7 +15,7 @@ public class Department implements Serializable{
     @Column(name = "ID")
     private long id;
 
-    @Column(unique = true, nullable = false)
+
     private String name;
 
     private TypeDepartment typeDepartment;
